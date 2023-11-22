@@ -35,7 +35,7 @@ body {
 
 .price-table {
   width: 362px;
-  height: 768px;
+  height: 900px;
   margin: 2%;
   position: relative;
   padding-top: 50px;
@@ -126,7 +126,7 @@ body {
 .drop-out {
   align-items: center;
   width: 362px;
-  height: 768px;
+  height: 900px;
   display: flex;
   flex-direction: column;
   background-color: var(--white);
@@ -143,6 +143,7 @@ body {
 }
 
 .dropout-text p {
+  padding: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -150,7 +151,8 @@ body {
 }
 
 .dropout-text p:nth-child(odd) {
-  width: 362px;
+  padding: 10px;
+  width: 342px;
   height: 50px;
   background-color: var(--q-white);
 }
@@ -224,7 +226,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 37px;
 }
 
 .subcription p {
@@ -253,6 +255,14 @@ body {
   text-align: center;
 }
 /* description@@ */
+.subcription p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  max-width: 250px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 .second-subtitle p {
   text-align: center;
   margin: 0px !important;
