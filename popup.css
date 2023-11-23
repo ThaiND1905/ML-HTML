@@ -19,6 +19,14 @@ body {
   margin: 0;
   padding: 0;
 }
+
+#a-sub {
+  cursor: pointer;
+}
+
+#a-sub:hover {
+  color: var(--gray);
+}
 /* flex box */
 .flex-center {
   display: flex;
@@ -269,9 +277,9 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  max-width: 250px;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  padding: 0 5%;
 }
 /* New-pick */
 .new {
@@ -299,9 +307,18 @@ body {
 /* responsive */
 /* for vertical phone */
 @media screen and (max-width: 320px) {
+  .flex-center {
+    flex-wrap: wrap;
+  }
 }
 /* for horizontal phone */
 @media screen and (max-width: 480px) and (min-width: 321px) {
+  .flex-center {
+    flex-wrap: wrap;
+  }
+  .price-table {
+    padding: 65px;
+  }
 }
 /* for vertical tablet */
 @media screen and (max-width: 650px) and (min-width: 481px) {
@@ -342,6 +359,7 @@ body {
   }
 
   .dropout-text {
+    padding: 2px;
     width: 195px;
     height: 140px;
     font-size: 12px;
@@ -349,6 +367,7 @@ body {
   }
 
   .dropout-text p:nth-child(odd) {
+    padding: 2px;
     width: 195px;
     height: 30px;
   }
@@ -426,7 +445,7 @@ body {
 
   .price-table {
     width: 350px;
-    height: 750px;
+    height: 850px;
     padding: 50px;
     text-align: center;
     align-items: center;
@@ -448,23 +467,23 @@ body {
   .description {
     font-size: 30px;
     letter-spacing: 2px;
-    line-height: 25px;
+    line-height: 40px;
   }
 
   .drop-out {
     width: 350px;
-    height: 750px;
+    height: 850px;
   }
 
   .dropout-text {
-    width: 350px;
+    width: 330px;
     height: 140px;
     font-size: 15px;
     line-height: 60px;
   }
 
   .dropout-text p:nth-child(odd) {
-    width: 350px;
+    width: 330px;
     height: 60px;
   }
 
@@ -509,7 +528,7 @@ body {
 
   .second-subtitle {
     font-size: 15px;
-    line-height: 15px;
+    line-height: 22px;
   }
   /* New-pick */
   .new {
@@ -528,20 +547,24 @@ body {
 }
 /* for horizontal big tablet*/
 @media screen and (min-width: 1024px) and (max-width: 1240px) {
+  #a-sub {
+    width: 20px;
+    height: 20px;
+  }
   .price-table {
     width: 250px;
-    height: 550px;
+    height: 650px;
     padding: 20px;
     text-align: center;
     align-items: center;
   }
 
   .price-box {
-    width: 60px;
-    height: 60px;
-    border-radius: 60px;
-    font-size: 14px;
-    line-height: 12px;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    font-size: 12px;
+    line-height: 10px;
   }
 
   .descripe-box {
@@ -552,23 +575,23 @@ body {
   .description {
     font-size: 18px;
     letter-spacing: 2px;
-    line-height: 25px;
+    line-height: 15px;
   }
 
   .drop-out {
     width: 250px;
-    height: 550px;
+    height: 650px;
   }
 
   .dropout-text {
-    width: 250px;
+    width: 230px;
     height: 180px;
     font-size: 12px;
     line-height: 50px;
   }
 
   .dropout-text p:nth-child(odd) {
-    width: 250px;
+    width: 230px;
     height: 50px;
   }
 
@@ -612,8 +635,9 @@ body {
   }
 
   .second-subtitle {
-    font-size: 12px;
-    line-height: 20px;
+    max-width: 250px;
+    font-size: 10px;
+    line-height: 12px;
   }
   /* New-pick */
   .new {
@@ -631,7 +655,7 @@ body {
   }
 }
 /* for desktop*/
-@media screen and (min-width: 1240px) {
+@media screen and (min-width: 1250px) {
   .background1,
   .price-table,
   .drop-out {
