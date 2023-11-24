@@ -18,13 +18,14 @@ function swipeLeft() {
     let leftArrow = document.getElementById('left');
     let pictures = document.getElementsByClassName("picture");
     let arrows= document.getElementsByClassName("arrow");
-    console.log(pictures[2])
     if (pictures[2].getBoundingClientRect().left >= 6060.45 ){
         leftArrow.disabled = true;
     }else{
         Array.prototype.forEach.call(arrows, arrow => {
-            debounc(() => {arrow.style.display = 'none'} ,2000);
-        })
+            arrow.addEventListener("click", debounce(() =>{
+                show(arrow);
+            },2000 )
+        )});
         Array.prototype.forEach.call(pictures, picture => {
             var left = picture.getBoundingClientRect().left;
             let moveRight = left + 3030.22509765625;
@@ -41,8 +42,8 @@ function swipeRight() {
         rightArrow.disabled = true;
     }else{
         Array.prototype.forEach.call(arrows, arrow => {
-            debounce(arrow.style.display = 'none',1000);
-        })
+            arrow.style.display = 'none';
+        });
         Array.prototype.forEach.call(pictures, picture => {
             var left = picture.getBoundingClientRect().left;
             let moveLeft = left - 3030.22509765625;
@@ -51,42 +52,43 @@ function swipeRight() {
     }
 }
 
-setInterval(swipeRight,5000);
-setTimeout(setInterval(swipeLeft,5000),200000);
-
-function show(obj1,obj2) {
-    var obj1 = document.getElementById(obj1);
-    var obj2 = document.getElementById(obj2);  
-    obj1.style.display = 'block';
-    obj2.style.display = 'block';
+function autoSwipe(){
+    let rightSwipe = setInterval(swipeRight,3000); 
+    let leftSwipe = 0;
+    setTimeout(function (){
+        clearInterval(rightSwipe);
+        leftSwipe = setInterval(swipeLeft,3000);
+    },7000);
+    setTimeout(function (){
+        clearInterval(leftSwipe);
+    },14000);
 }
 
-function hide(obj1, obj2) {
-    var obj1 = document.getElementById(obj1);
-    var obj2 = document.getElementById(obj2);  
-    obj1.style.display = 'none';
-    obj2.style.display = 'none';
+setTimeout(function(){
+    setInterval(autoSwipe(),16000)
+},1000);
+
+function show(obj) {
+    var obj = document.getElementById(obj);  
+    obj.style.display = 'block';
 }
 
-function leftDisabledStyle(){
-    let pictures = document.getElementsByClassName("picture");
-    let leftArrow = document.getElementById('left');
-    
-    if (pictures[2].getBoundingClientRect().left >= 6060 ){
-        leftArrow.classList.add('disabled-arrow');
-    }else{
-
-        leftArrow.classList.remove('disabled-arrow');
-    }
+function hide(obj) {
+    var obj = document.getElementById(obj);  
+    obj.style.display = 'none';
 }
 
-function rightDisabledStyle(){
+function disabledStyle(){
     let pictures = document.getElementsByClassName("picture");
     let rightArrow = document.getElementById('right');
+    let leftArrow = document.getElementById('left');
     if (pictures[0].getBoundingClientRect().left <= -6060.45 ){
-        rightArrow.classList.add('disabled-arrow');
+        hide(leftArrow);
+    }else if(pictures[2].getBoundingClientRect().left >= 6060.45){
+        hide(rightArrow);
     }else{
-        rightArrow.classList.remove('disabled-arrow');
+        show(rightArrow);
+        show(leftArrow);
     }
 }
 
