@@ -11,19 +11,19 @@
 
   <body>
     <div class="wrapper">
-      <div onmousemove="show('left'),show('right')" onmouseleave="hide('left'),hide('right')" class="swipe-background">
+      <div onmouseenter="showArrow()" onmouseleave="hideArrow()" class="swipe-background">
         <div>
           <img class="picture" style="left: 0px;" src="image/1-dog.jpg" />
           <img class="picture" style="left: 3030.22509765625px;" src="image/2-dogs.jpg" />
           <img class="picture" style="left: 6060.450195px;" src="image/3-dogs.jpg" />
         </div>
-        <a id="left" onmousemove="disabledStyle()" onmouseup="swipeLeft()" class="arrow left-arrow"><svg
-            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+        <a id="left" onclick="swipeLeft()" disabled class="arrow left-arrow"><svg xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
               d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
           </svg>
         </a>
-        <a id="right" onmousemove="disabledStyle()" onmouseup="swipeRight()" class="arrow right-arrow">
+        <a id="right" onclick="swipeRight()" disabled class="arrow right-arrow">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
               d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
@@ -31,6 +31,7 @@
         </a>
 
       </div>
+    </div>
   </body>
 
 </html>

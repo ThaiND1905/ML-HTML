@@ -14,6 +14,14 @@ function debounce(fn, ms) {
     }
 }
 
+function show(obj) { 
+    obj.style.display = 'block';
+}
+
+function hide(obj) { 
+    obj.style.display = 'none';
+}
+
 function swipeLeft() {
     let leftArrow = document.getElementById('left');
     let pictures = document.getElementsByClassName("picture");
@@ -22,10 +30,8 @@ function swipeLeft() {
         leftArrow.disabled = true;
     }else{
         Array.prototype.forEach.call(arrows, arrow => {
-            arrow.addEventListener("click", debounce(() =>{
-                show(arrow);
-            },2000 )
-        )});
+            arrow.style.display = 'none';
+        });
         Array.prototype.forEach.call(pictures, picture => {
             var left = picture.getBoundingClientRect().left;
             let moveRight = left + 3030.22509765625;
@@ -42,6 +48,8 @@ function swipeRight() {
         rightArrow.disabled = true;
     }else{
         Array.prototype.forEach.call(arrows, arrow => {
+            console.log(arrow.disabled);
+            arrow.disabled =true;
             arrow.style.display = 'none';
         });
         Array.prototype.forEach.call(pictures, picture => {
@@ -65,30 +73,22 @@ function autoSwipe(){
 }
 
 setTimeout(function(){
-    setInterval(autoSwipe(),16000)
+    setInterval(function(){
+        autoSwipe();
+    },16000)
 },1000);
 
-function show(obj) {
-    var obj = document.getElementById(obj);  
-    obj.style.display = 'block';
+function showArrow() {
+    let arrows= document.getElementsByClassName("arrow");
+    Array.prototype.forEach.call(arrows, arrow => {
+        show(arrow);
+    });
 }
 
-function hide(obj) {
-    var obj = document.getElementById(obj);  
-    obj.style.display = 'none';
-}
-
-function disabledStyle(){
-    let pictures = document.getElementsByClassName("picture");
-    let rightArrow = document.getElementById('right');
-    let leftArrow = document.getElementById('left');
-    if (pictures[0].getBoundingClientRect().left <= -6060.45 ){
-        hide(leftArrow);
-    }else if(pictures[2].getBoundingClientRect().left >= 6060.45){
-        hide(rightArrow);
-    }else{
-        show(rightArrow);
-        show(leftArrow);
-    }
+function hideArrow() {
+    let arrows= document.getElementsByClassName("arrow");
+    Array.prototype.forEach.call(arrows, arrow => {
+        hide(arrow);
+    });
 }
 
