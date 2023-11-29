@@ -1,137 +1,111 @@
-function debounce(fn, ms) {
-    let timer;
-    
-    return function() {
-        // Nhận các đối số
-        const args = arguments;
-        const context = this;
-        
-        if(timer) clearTimeout(timer);
-        
-        timer = setTimeout(() => {
-            fn.apply(context, args);
-        }, ms)
-    }
-}
+// space between 2 pictures which defined by left position;
+const spaceBetween = 3030.22509765625;
 
-function show(obj) { 
-    obj.style.display = 'block';
-}
+debounce = (fn, ms) => {
+  let timer;
 
-function hide(obj) { 
-    obj.style.display = 'none';
-}
+  return function () {
+    // Nhận các đối số
+    const args = arguments;
+    const context = this;
 
-function swipeLeft() {
-    let leftArrow = document.getElementById('left');
-    let pictures = document.getElementsByClassName("picture");
-    let arrows= document.getElementsByClassName("arrow");
-    if (pictures[2].getBoundingClientRect().left > 3031 ){
-        leftArrow.disabled = true;
-    }else{
-        Array.prototype.forEach.call(arrows, arrow => {
-            arrow.style.display = 'none';
-        });
-        Array.prototype.forEach.call(pictures, picture => {
-            let left = picture.getBoundingClientRect().left;
-            let moveRight = 0;
-            console.log(left);
-            picture.style.left = `${moveRight}px`;
-            if (0 <= Math.abs(left) && Math.abs(left) < 3030.22509765625) {
-                if(left > 0) {
-                    moveRight = 6060.4501953125 ;
-                    picture.style.left = `${moveRight}px`;
-                }else{
-                    moveRight = 3030.22509765625;
-                    picture.style.left = `${moveRight}px`;
-                }
-            } else if( 3030.22509765265 <= Math.abs(left) && Math.abs(left) < 6060.4501953125 ) {
-                if(left > 0) {
-                    moveRight = 6060.4501953125;
-                    picture.style.left = `${moveRight}px`; 
-                }else{
-                    moveRight = 0;
-                    picture.style.left = `${moveRight}px`;
-                }
-            }else if( Math.abs(left) >= 6060.4501953125){
-                if(left < 0) {
-                    moveRight = -3030.22509765265;
-                    picture.style.left = `${moveRight}px`;
-                }
-            };
-        });
-    }
-}
+    if (timer) clearTimeout(timer);
 
-function swipeRight() {
-    const rightArrow = document.getElementById('right');
-    let pictures = document.getElementsByClassName("picture");
-    let arrows= document.getElementsByClassName("arrow");
-    if (pictures[0].getBoundingClientRect().left < -3031 ){
-        rightArrow.disabled = true;
-    }else{
-        Array.prototype.forEach.call(arrows, arrow => {
-            arrow.disabled =true;
-            arrow.style.display = 'none';
-        });
-        Array.prototype.forEach.call(pictures, picture => {
-            let left = picture.getBoundingClientRect().left;
-            let moveLeft = 0;
-            if (0 <= Math.abs(left) && Math.abs(left) < 3030.22509765625) {
-                if(left >= 0) {
-                    moveLeft = - 3030.22509765265;
-                    picture.style.left = `${moveLeft}px`; 
-                }else{
-                    moveLeft = - 6060.4501953125;
-                    picture.style.left = `${moveLeft}px`;
-                }
-            } else if( 3030.22509765265 <= Math.abs(left) && Math.abs(left) < 6060.4501953125 ) {
-                if(left > 0) {
-                    moveLeft = 0;
-                    picture.style.left = `${moveLeft}px`; 
-                }else{
-                    moveLeft = -2 * 3030.22509765265;
-                    picture.style.left = `${moveLeft}px`;
-                }
-            }else if( Math.abs(left) >= 6060.4501953125){
-                if(left > 0) {
-                    moveLeft = 3030.22509765265;
-                    picture.style.left = `${moveLeft}px`; 
-                }
-            };
-        });
-    }
-}
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, ms);
+  };
+};
 
-function autoSwipe(){
-    let rightSwipe = setInterval(swipeRight,3000); 
-    let leftSwipe = 0;
-    setTimeout(function (){
-        clearInterval(rightSwipe);
-        leftSwipe = setInterval(swipeLeft,3000);
-    },7000);
-    setTimeout(function (){
-        clearInterval(leftSwipe);
-    },14000);
-}
+handleSwipe = () => {
+  const leftArrow = document.getElementById("left");
+  const rightArrow = document.getElementById("right");
+  const pictures = document.getElementsByClassName("picture");
+  let left = 0;
+  let moveLeft = 0;
+  rightArrow.onclick = () => {
+    for (var picture in pictures) {
+      left = picture.getBoundingClientRect().left;
+      switch (true) {
+        case pictures[0].getBoundingClientRect().left < -spaceBetween:
+          leftArrow.disabled = true;
+          break;
+        case left < -2 * spaceBetween:
+          break;
+        case -0 > left && left >= -2 * spaceBetween:
+          moveLeft = -2 * spaceBetween;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case spaceBetween > left && left >= 0:
+          moveLeft = -spaceBetween;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case 2 * spaceBetween > left && left >= spaceBetween:
+          moveLeft = 0;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case left >= 2 * spaceBetween:
+          moveLeft = spaceBetween;
+          picture.style.left = `${moveLeft}px`;
+          break;
+      }
+    };
+  };
+ leftArrow.onclick = () => {
+    for (var picture in pictures) {
+      left = picture.getBoundingClientRect().left;
+      console.log(left);
+      switch (true) {
+        case pictures[2].getBoundingClientRect().left > 3031:
+          rightArrow.disabled = true;
+          break;
+        case left <= -2 * spaceBetween:
+          moveLeft = - spaceBetween;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case -spaceBetween >= left && left > -2 * spaceBetween:
+          moveLeft = 0;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case 0 >= left && left > -spaceBetween:
+          moveLeft = spaceBetween;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case spaceBetween >= left && left > 0:
+          moveLeft = 2 * spaceBetween;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case 2 * spaceBetween >= left && left > spaceBetween:
+          moveLeft = 2 * spaceBetween;
+          picture.style.left = `${moveLeft}px`;
+          break;
+        case left > 2 * spaceBetween:
+          break;
+      }
+    };
+  };
+};
 
-setTimeout(function(){
-    setInterval(function(){
-        autoSwipe();
-    },16000);
-},1000);
+handleArrowAppearance = () => {
+  const arrows = document.getElementsByClassName("arrow");
+  const wrapper = document.getElementById("wrapper");
+  if (arrows) {
+    wrapper.onmousemove = () => {
+      for(var arrow in arrows) {
+        arrow.style.display = "block";
+      };
+    };
+    wrapper.onmouseleave = () => {
+      for (var arrow in arrows) {
+        if (arrow.style.display === "block") {
+          arrow.style.display = "none";
+        } else {
+          arrow.style.display = "block";
+        }
+      };
+    };
+  }
+};
 
-function showArrow() {
-    let arrows= document.getElementsByClassName("arrow");
-    Array.prototype.forEach.call(arrows, arrow => {
-        show(arrow);
-    });
-}
-
-function hideArrow() {
-    let arrows= document.getElementsByClassName("arrow");
-    Array.prototype.forEach.call(arrows, arrow => {
-        hide(arrow);
-    });
-}
-
+handleSwipe();
+handleArrowAppearance();

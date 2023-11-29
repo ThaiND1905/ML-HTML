@@ -4,17 +4,17 @@
   --purple: #6c136f;
   --green: #32ad1e;
   --white: #ffffff;
-  --q-black: #393d50;
-  --q-white: #f4f6f7;
-  --q-gray: #5f727f;
-  --qq-gray: #99a9b5;
-  --qq-black: #2c2e3d;
+  --black-81: rgb(57, 61, 81);
+  --white-245: rgb(242, 244, 245);
+  --gray-128: rgb(94, 114, 128);
+  --gray-181: rgb(153, 169, 181);
+  --black-62: rgb(45, 47, 62);
 }
 
 body {
   padding: 0;
   margin: 0;
-  background-color: var(--qq-gray);
+  background-color: var(--gray-181);
 }
 
 * {
@@ -77,5 +77,5 @@ body {
   color: var(--blue);
 }
 .disabled-arrow:hover {
-  color: var(--q-gray);
+  color: var(--gray-128);
 }
