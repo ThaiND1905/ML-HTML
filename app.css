@@ -13,11 +13,11 @@ p {
   line-height: 29px;
 }
 :root {
-  --black: #151515;
+  --black: rgb(20, 20, 20);
   --black-90: rgba(21, 21, 21, 0.9);
   --black-75: rgba(21, 21, 21, 0.75);
   --black-50: rgba(21, 21, 21, 0.5);
-  --accent: #e36262;
+  --accent: rgb(227, 99, 99)
   --primary-ff: "EB Garamond", Georgia, serif;
   --secondary-ff: "Montserrat", Helvetica, sans-serif;
 }

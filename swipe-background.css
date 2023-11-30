@@ -1,10 +1,10 @@
 :root {
-  --blue: #2196f7;
-  --gray: rgb(222, 228, 231);
-  --gray-50: rgba(222, 228, 331, 0.5);
-  --purple: #6c136f;
-  --green: #32ad1e;
-  --white: hsl(0, 0%, 100%);
+  --blue: rgb(33, 122, 247);
+  --gray: rgba(222, 228, 231, 1);
+  --gray-50: rgba(222, 228, 331, 0.75);
+  --purple: rgb(106, 18, 109)
+  --green: rgb(33, 247, 112);
+  --white: rgb(255, 255, 255)
   --bisque: rgb(255, 228, 196);
 }
 
