@@ -1,38 +1,21 @@
 // space between 2 pictures which defined by left position;
-const spaceBetween = 3030.22509765625;
+const wrapper = document.getElementById('wrapper').getBoundingClientRect().width;
+const spaceBetween = wrapper/3;
 
-debounce = (fn, ms) => {
-  let timer;
-
-  return function () {
-    // Nhận các đối số
-    const args = arguments;
-    const context = this;
-
-    if (timer) clearTimeout(timer);
-
-    timer = setTimeout(() => {
-      fn.apply(context, args);
-    }, ms);
-  };
-};
-
-handleSwipe = () => {
+const handleSwipe = () => {
   const leftArrow = document.getElementById("left");
   const rightArrow = document.getElementById("right");
-  const pictures = document.getElementsByClassName("picture");
-  let left = 0;
-  let moveLeft = 0;
+  const pictures = document.querySelectorAll(".picture");
   rightArrow.onclick = () => {
-    for (var picture in pictures) {
+    pictures.forEach(picture => {
       left = picture.getBoundingClientRect().left;
       switch (true) {
         case pictures[0].getBoundingClientRect().left < -spaceBetween:
-          leftArrow.disabled = true;
+          rightArrow.disabled = true;
           break;
         case left < -2 * spaceBetween:
           break;
-        case -0 > left && left >= -2 * spaceBetween:
+        case 0 > left && left >= -2 * spaceBetween:
           moveLeft = -2 * spaceBetween;
           picture.style.left = `${moveLeft}px`;
           break;
@@ -49,10 +32,10 @@ handleSwipe = () => {
           picture.style.left = `${moveLeft}px`;
           break;
       }
-    };
+    });
   };
- leftArrow.onclick = () => {
-    for (var picture in pictures) {
+  leftArrow.onclick = () => {
+    pictures.forEach(picture => {
       left = picture.getBoundingClientRect().left;
       console.log(left);
       switch (true) {
@@ -60,7 +43,7 @@ handleSwipe = () => {
           rightArrow.disabled = true;
           break;
         case left <= -2 * spaceBetween:
-          moveLeft = - spaceBetween;
+          moveLeft = -spaceBetween;
           picture.style.left = `${moveLeft}px`;
           break;
         case -spaceBetween >= left && left > -2 * spaceBetween:
@@ -82,28 +65,33 @@ handleSwipe = () => {
         case left > 2 * spaceBetween:
           break;
       }
-    };
+    });
   };
 };
-
-handleArrowAppearance = () => {
-  const arrows = document.getElementsByClassName("arrow");
+ 
+const handleArrowAppearance = () => {
+  const arrows = document.querySelectorAll(".arrow");
   const wrapper = document.getElementById("wrapper");
+  console.log(arrows);
   if (arrows) {
     wrapper.onmousemove = () => {
-      for(var arrow in arrows) {
+      arrows.forEach(arrow => {
         arrow.style.display = "block";
-      };
+      });
     };
     wrapper.onmouseleave = () => {
-      for (var arrow in arrows) {
+      arrows.forEach(arrow => {
         if (arrow.style.display === "block") {
           arrow.style.display = "none";
         } else {
           arrow.style.display = "block";
         }
-      };
+      });
     };
+  }else{
+    return arrows.forEach(arrow => {
+      arrow.style.display = "none";
+    });
   }
 };
 
