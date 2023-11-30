@@ -1,6 +1,6 @@
-// space between 2 pictures which defined by left position;
+// Actual window's width;
 const wrapper = document.getElementById('wrapper').getBoundingClientRect().width;
-const spaceBetween = wrapper/3;
+const actualWidth = wrapper/3;
 
 const handleSwipe = () => {
   const leftArrow = document.getElementById("left");
@@ -10,25 +10,25 @@ const handleSwipe = () => {
     pictures.forEach(picture => {
       left = picture.getBoundingClientRect().left;
       switch (true) {
-        case pictures[0].getBoundingClientRect().left < -spaceBetween:
+        case pictures[0].getBoundingClientRect().left < -actualWidth:
           rightArrow.disabled = true;
           break;
-        case left < -2 * spaceBetween:
+        case left < -2 * actualWidth:
           break;
-        case 0 > left && left >= -2 * spaceBetween:
-          moveLeft = -2 * spaceBetween;
+        case 0 > left && left >= -2 * actualWidth:
+          moveLeft = -2 * actualWidth;
           picture.style.left = `${moveLeft}px`;
           break;
-        case spaceBetween > left && left >= 0:
-          moveLeft = -spaceBetween;
+        case actualWidth > left && left >= 0:
+          moveLeft = -actualWidth;
           picture.style.left = `${moveLeft}px`;
           break;
-        case 2 * spaceBetween > left && left >= spaceBetween:
+        case 2 * actualWidth > left && left >= actualWidth:
           moveLeft = 0;
           picture.style.left = `${moveLeft}px`;
           break;
-        case left >= 2 * spaceBetween:
-          moveLeft = spaceBetween;
+        case left >= 2 * actualWidth:
+          moveLeft = actualWidth;
           picture.style.left = `${moveLeft}px`;
           break;
       }
@@ -42,27 +42,27 @@ const handleSwipe = () => {
         case pictures[2].getBoundingClientRect().left > 3031:
           rightArrow.disabled = true;
           break;
-        case left <= -2 * spaceBetween:
-          moveLeft = -spaceBetween;
+        case left <= -2 * actualWidth:
+          moveLeft = -actualWidth;
           picture.style.left = `${moveLeft}px`;
           break;
-        case -spaceBetween >= left && left > -2 * spaceBetween:
+        case -actualWidth >= left && left > -2 * actualWidth:
           moveLeft = 0;
           picture.style.left = `${moveLeft}px`;
           break;
-        case 0 >= left && left > -spaceBetween:
-          moveLeft = spaceBetween;
+        case 0 >= left && left > -actualWidth:
+          moveLeft = actualWidth;
           picture.style.left = `${moveLeft}px`;
           break;
-        case spaceBetween >= left && left > 0:
-          moveLeft = 2 * spaceBetween;
+        case actualWidth >= left && left > 0:
+          moveLeft = 2 * actualWidth;
           picture.style.left = `${moveLeft}px`;
           break;
-        case 2 * spaceBetween >= left && left > spaceBetween:
-          moveLeft = 2 * spaceBetween;
+        case 2 * actualWidth >= left && left > actualWidth:
+          moveLeft = 2 * actualWidth;
           picture.style.left = `${moveLeft}px`;
           break;
-        case left > 2 * spaceBetween:
+        case left > 2 * actualWidth:
           break;
       }
     });
