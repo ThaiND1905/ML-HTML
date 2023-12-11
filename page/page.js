@@ -182,3 +182,18 @@ const handleShowHiddenSearch = () => {
 };
 
 handleShowHiddenSearch();
+
+const handleHeartClick = () => {
+  const heartIcons = document.querySelectorAll(".heart-icon");
+  heartIcons.forEach((heartIcon) => {
+    heartIcon.onclick = () => {
+      if (heartIcon.style.fill !== "var(--red)") {
+        heartIcon.style.fill = "var(--red)";
+      } else {
+        heartIcon.style.fill = "var(--black)";
+      }
+    };
+  });
+};
+
+handleHeartClick();
