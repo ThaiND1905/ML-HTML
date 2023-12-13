@@ -197,3 +197,24 @@ const handleHeartClick = () => {
 };
 
 handleHeartClick();
+
+const handleBuyClick = () => {
+  const purposeIconDivs = document.querySelectorAll(".product-purpose-icon");
+  purposeIconDivs.forEach((purposeIconDiv) => {
+    const buyIcon = purposeIconDiv.querySelector(".buy-icon");
+    const buyIconHidden = purposeIconDiv.querySelector(".buy-icon-hidden");
+    if (buyIcon && buyIconHidden) {
+      buyIcon.onclick = () => {
+        buyIconHidden.style.opacity = 1;
+        buyIconHidden.style.top = "10px";
+        buyIconHidden.style.display = "block";
+        buyIconHidden.style.backgroundColor = "var(--white)";
+        buyIconHidden.style.border = "none";
+      };
+    } else {
+      console.log("No Buy Icon Here");
+    }
+  });
+};
+
+handleBuyClick();

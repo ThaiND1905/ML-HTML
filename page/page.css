@@ -10,6 +10,7 @@
   --gray: #f4f6f7;
   --dark-gray: #99a9b5;
   --pink: #ff5176;
+  --yellow: yellow;
   --primary-ff: "EB Garamond", Georgia, serif;
   --secondary-ff: "Montserrat";
   --thirdary-ff: "Source Sans Pro";
@@ -32,7 +33,6 @@
 }
 
 body {
-  font-family: Arial;
   padding-top: 5px;
   margin: 0px;
   background: var(--white);
@@ -667,7 +667,7 @@ p {
   pointer-events: none;
   background: transparent;
   border-color: transparent;
-  color: red;
+  color: var(--red);
   border-radius: 5px;
 }
 
@@ -951,6 +951,9 @@ p {
   text-align: center;
   color: var(--white);
   font-family: var(--secondary-ff);
+  animation-name: changecolor;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
   & .sidebar-banner-content {
     width: 90%;
     height: 548px;
@@ -997,7 +1000,7 @@ p {
     background-color: var(--white);
     font-size: 16px;
     line-height: 25px;
-    color: #99a9b5;
+    color: var(--text);
     font-weight: 400;
     font-family: var(--thirdary-ff);
     text-align: center;
@@ -1154,12 +1157,12 @@ p {
   align-items: center;
   font-size: 16px;
   line-height: 25px;
-  color: #99a9b5;
+  color: var(--text);
   font-weight: 400;
   font-family: var(--secondary-ff);
   & .sortbar-content {
     width: 95%;
-    background-color: #d8e3e8;
+    background-color: var(--gray);
     height: 50px;
     display: inline-block;
     & .sortby {
@@ -1247,7 +1250,7 @@ p {
       width: 35%;
       font-size: 16px;
       line-height: 50px;
-      color: #99a9b5;
+      color: var(--text);
       font-weight: 400;
       font-family: var(--thirdary-ff);
       text-align: right;
@@ -1316,8 +1319,24 @@ p {
       & .product-purpose-icon {
         padding: 15.5px;
         display: inline-block;
+        position: relative;
+        & .buy-icon-hidden {
+          position: absolute;
+          height: 18px;
+          width: 18px;
+          top: -2px;
+          left: 20px;
+          background-color: var(--ocean);
+          color: var(--white);
+          border-radius: 9px;
+          border: var(--black) solid 1px;
+          transition: all 1s linear;
+          opacity: 0;
+          z-index: -1;
+        }
         & svg {
           margin: 2px;
+          z-index: 1;
           &:hover {
             fill: var(--ocean);
             cursor: pointer;
@@ -2044,4 +2063,9 @@ p {
     float: none;
     width: 100%;
   }
+}
+
+@keyframes changecolor {
+  from{ background-color: var(--pink);}
+  to{ background-color:var(--yellow);}
 }
