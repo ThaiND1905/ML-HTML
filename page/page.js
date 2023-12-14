@@ -157,7 +157,7 @@ const handleShowHiddenSidebar = () => {
       if (getComputedStyle(hiddenDiv1).display == "none") {
         arrow.style.rotate = "90deg";
         hiddenDiv1.style.display = "block";
-        hiddenDiv1.style.borderBottom = "1px solid const(--gray);";
+        hiddenDiv1.style.borderBottom = "1px solid var(--gray);";
       } else {
         hiddenDiv1.style.display = "none";
         arrow.style.rotate = "0deg";
@@ -186,10 +186,11 @@ const handleHeartClick = () => {
   const heartIcons = document.querySelectorAll(".heart-icon");
   heartIcons.forEach((heartIcon) => {
     heartIcon.onclick = () => {
-      if (heartIcon.style.fill !== "const(--red)") {
-        heartIcon.style.fill = "const(--red)";
+      console.log(heartIcon);
+      if (heartIcon.style.fill !== "var(--red)") {
+        heartIcon.style.fill = "var(--red)";
       } else {
-        heartIcon.style.fill = "const(--black)";
+        heartIcon.style.fill = "var(--black)";
       }
     };
   });
@@ -207,7 +208,7 @@ const handleBuyClick = () => {
         buyIconHidden.style.opacity = 1;
         buyIconHidden.style.top = "10px";
         buyIconHidden.style.display = "block";
-        buyIconHidden.style.backgroundColor = "const(--white)";
+        buyIconHidden.style.backgroundColor = "var(--white)";
         buyIconHidden.style.border = "none";
       };
     } else {
