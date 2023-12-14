@@ -50,14 +50,14 @@ new Swiper("#swiper-2", {
 });
 
 //price-filter
-var lowerSlider = document.querySelector("#lower");
-var upperSlider = document.querySelector("#upper");
+const lowerSlider = document.getElementById("lower");
+const upperSlider = document.getElementById("upper");
 
-document.querySelector("#two").value = upperSlider.value;
-document.querySelector("#one").value = lowerSlider.value;
+document.getElementById("two").value = upperSlider.value;
+document.getElementById("one").value = lowerSlider.value;
 
-var lowerVal = parseInt(lowerSlider.value);
-var upperVal = parseInt(upperSlider.value);
+const lowerVal = parseInt(lowerSlider.value);
+const upperVal = parseInt(upperSlider.value);
 
 upperSlider.oninput = function () {
   lowerVal = parseInt(lowerSlider.value);
@@ -153,10 +153,11 @@ const handleShowHiddenSidebar = () => {
     const cartText = sidebarCartItem.querySelector(".cart-text");
     const arrow = cartText.querySelector("#arrow");
     sidebarCartItem.onclick = () => {
+      console.log(hiddenDiv1);
       if (getComputedStyle(hiddenDiv1).display == "none") {
         arrow.style.rotate = "90deg";
         hiddenDiv1.style.display = "block";
-        hiddenDiv1.style.borderBottom = "1px solid var(--gray);";
+        hiddenDiv1.style.borderBottom = "1px solid const(--gray);";
       } else {
         hiddenDiv1.style.display = "none";
         arrow.style.rotate = "0deg";
@@ -171,13 +172,11 @@ const handleShowHiddenSearch = () => {
   const searchIcon = document.getElementById("search-icon");
   const searchDiv = document.getElementById("search-div");
   searchIcon.onclick = () => {
-    searchDiv.style.display = "block";
-    searchDiv.style.width = "200px";
-    searchDiv.style.height = "40px";
-    searchDiv.style.zIndex = "50";
-    searchDiv.style.top = "135px";
-    searchDiv.style.border = "1px solid var(--black)";
-    searchDiv.style.borderRadius = "5px";
+    if (searchDiv.classList.contains("search-div-add")) {
+      searchDiv.classList.remove("search-div-add");
+    } else {
+      searchDiv.classList.add("search-div-add");
+    }
   };
 };
 
@@ -187,10 +186,10 @@ const handleHeartClick = () => {
   const heartIcons = document.querySelectorAll(".heart-icon");
   heartIcons.forEach((heartIcon) => {
     heartIcon.onclick = () => {
-      if (heartIcon.style.fill !== "var(--red)") {
-        heartIcon.style.fill = "var(--red)";
+      if (heartIcon.style.fill !== "const(--red)") {
+        heartIcon.style.fill = "const(--red)";
       } else {
-        heartIcon.style.fill = "var(--black)";
+        heartIcon.style.fill = "const(--black)";
       }
     };
   });
@@ -208,7 +207,7 @@ const handleBuyClick = () => {
         buyIconHidden.style.opacity = 1;
         buyIconHidden.style.top = "10px";
         buyIconHidden.style.display = "block";
-        buyIconHidden.style.backgroundColor = "var(--white)";
+        buyIconHidden.style.backgroundColor = "const(--white)";
         buyIconHidden.style.border = "none";
       };
     } else {
